@@ -7,6 +7,8 @@ Robust linear regression learner for
 [mlr3](https://mlr3.mlr-org.com/), using `rlm()` from the
 [MASS](https://cran.r-project.org/package=MASS) package.
 
+Documentation: https://mlr3rlm.netlify.app
+
 ## Installation
 
 ```r
