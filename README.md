@@ -1,6 +1,6 @@
 # mlr3rlm
 
-[![R-CMD-check](https://github.com/TON_UTILISATEUR/mlr3rlm/actions/workflows/check.yaml/badge.svg)](https://github.com/TON_UTILISATEUR/mlr3rlm/actions/workflows/check.yaml)
+[![R-CMD-check](https://github.com/jacobtremb/mlr3rlm/actions/workflows/check.yaml/badge.svg)](https://github.com/jacobtremb/mlr3rlm/actions/workflows/check.yaml)
 
 Robust linear regression learner for
 [mlr3](https://mlr3.mlr-org.com/), using `rlm()` from the
