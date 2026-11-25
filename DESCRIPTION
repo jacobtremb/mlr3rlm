@@ -11,5 +11,5 @@ License: GPL-3
 URL: https://github.com/jacobtremb/mlr3rlm
 BugReports: https://github.com/jacobtremb/mlr3rlm/issues
 Encoding: UTF-8
-Imports: MASS, mlr3, paradox, R6
+Imports: MASS, mlr3, paradox, R6, stats
 Suggests: testthat
