@@ -1,0 +1,78 @@
+---
+title: "Benchmark of the robust linear regression learner"
+vignette: >
+  %\VignetteIndexEntry{Benchmark}
+  %\VignetteEngine{litedown::vignette}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette compares `LearnerRegrRlm` with three other learners,
+using 5-fold cross-validation on two regression data sets.
+
+```{r}
+library(data.table)
+library(ggplot2)
+lgr::get_logger("mlr3")$set_threshold("warn")
+lgr::get_logger("bbotk")$set_threshold("warn")
+set.seed(1)
+```
+
+## Data sets
+
+We use two regression data sets included with R:
+`Boston` from the `MASS` package (median house value),
+and `airquality` (ozone concentration), keeping only the rows
+without missing values.
+
+```{r}
+boston <- mlr3::as_task_regr(MASS::Boston, target = "medv", id = "Boston")
+air_dt <- na.omit(data.table(datasets::airquality))
+air <- mlr3::as_task_regr(air_dt, target = "Ozone", id = "airquality")
+task.list <- list(boston, air)
+```
+
+## Learners
+
+```{r}
+kknn <- mlr3learners::LearnerRegrKKNN$new()
+kknn$param_set$values$k <- paradox::to_tune(1, 30)
+learner.list <- list(
+  mlr3rlm::LearnerRegrRlm$new(),
+  mlr3::LearnerRegrFeatureless$new(),
+  mlr3learners::LearnerRegrCVGlmnet$new(),
+  mlr3tuning::auto_tuner(
+    learner = kknn,
+    tuner = mlr3tuning::tnr("grid_search", resolution = 30),
+    resampling = mlr3::rsmp("cv", folds = 3),
+    measure = mlr3::msr("regr.mse"),
+    id = "kknn"))
+```
+
+## Benchmark
+
+```{r}
+kfoldcv <- mlr3::rsmp("cv", folds = 5)
+bench.grid <- mlr3::benchmark_grid(task.list, learner.list, kfoldcv)
+bench.result <- mlr3::benchmark(bench.grid)
+score_dt <- bench.result$score(mlr3::msr("regr.mse"))
+dcast(
+  score_dt,
+  task_id + learner_id ~ .,
+  list(mean, sd),
+  value.var = "regr.mse")
+```
+
+```{r, fig.width = 8, fig.height = 3}
+ggplot()+
+  geom_point(aes(
+    regr.mse, learner_id),
+    shape = 1,
+    data = score_dt)+
+  facet_grid(. ~ task_id, scales = "free_x")+
+  scale_x_log10("Mean squared error on test set (one point per fold)")+
+  scale_y_discrete("Learner")
+```
+
+## Conclusions
+`regr.rlm` is much more accurate than `featureless` in both data sets,
+and has accuracy similar to `cv_glmnet` and `kknn`.
