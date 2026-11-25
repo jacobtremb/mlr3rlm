@@ -1,1 +1,6 @@
+importFrom(MASS, rlm)
+importFrom(mlr3, LearnerRegr)
+importFrom(paradox, ps)
+importFrom(R6, R6Class)
+importFrom(stats, predict)
 export(LearnerRegrRlm)
