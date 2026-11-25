@@ -2,3 +2,5 @@
 .Rhistory
 *.Rcheck
 *.tar.gz
+site/*.html
+site/doc/
