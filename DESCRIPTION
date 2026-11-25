@@ -1,0 +1,15 @@
+Package: mlr3rlm
+Type: Package
+Title: Robust Linear Regression Learner for 'mlr3'
+Version: 2026.11.24
+Authors@R: person("Jacob", "Tremblay",
+    email = "Jacob.Tremblay@USherbrooke.ca",
+    role = c("aut", "cre"))
+Description: Provides a 'mlr3' learner for robust linear regression,
+    using the rlm() function from the 'MASS' package.
+License: GPL-3
+URL: https://github.com/jacobtremb/mlr3rlm
+BugReports: https://github.com/jacobtremb/mlr3rlm/issues
+Encoding: UTF-8
+Imports: MASS, mlr3, paradox, R6
+Suggests: testthat
