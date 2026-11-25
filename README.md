@@ -10,7 +10,7 @@ Robust linear regression learner for
 
 ```r
 install.packages("remotes")
-remotes::install_github("TON_UTILISATEUR/mlr3rlm")
+remotes::install_github("jacobtremb/mlr3rlm")
 ```
 
 ## Usage
