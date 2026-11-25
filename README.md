@@ -1,6 +1,7 @@
 # mlr3rlm
 
 [![R-CMD-check](https://github.com/jacobtremb/mlr3rlm/actions/workflows/check.yaml/badge.svg)](https://github.com/jacobtremb/mlr3rlm/actions/workflows/check.yaml)
+[![Codecov](https://codecov.io/gh/jacobtremb/mlr3rlm/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jacobtremb/mlr3rlm?branch=main)
 
 Robust linear regression learner for
 [mlr3](https://mlr3.mlr-org.com/), using `rlm()` from the
@@ -41,3 +42,4 @@ and `mlr3::benchmark()`.
   regression function called by this learner for train and predict.
 - [mlr3extralearners](https://github.com/mlr-org/mlr3extralearners):
   other learners for mlr3, where this learner could be submitted.
+- [Test coverage on Codecov](https://app.codecov.io/gh/jacobtremb/mlr3rlm?branch=main).
